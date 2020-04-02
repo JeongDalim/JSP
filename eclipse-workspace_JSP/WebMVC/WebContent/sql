@@ -1,0 +1,61 @@
+
+CREATE TABLE sam_admin (
+  idx number NOT NULL,         --  고유번호
+  adid varchar2(20) NOT NULL ,   --  아이디
+  adpass varchar2(20) NOT NULL ,   --  비밀번호
+  regdate date default sysdate,      --  등록일자
+  updatedate date default sysdate,   --  최근로그인한일자
+  PRIMARY KEY  (idx)
+);
+create sequence sam_admin_seq_idx;
+
+insert into sam_admin (idx,adid,adpass) values (sam_admin_seq_idx.nextval,'admin','1234');
+
+
+
+
+CREATE TABLE sam_notice (
+  idx number NOT NULL ,            --  고유번호, 자동증가
+  subject varchar2(255) NOT NULL ,      --  제목
+  contents varchar2(2000) NOT NULL,      --  내용
+  regdate date default sysdate,         --  등록일자
+  updatedate date default sysdate,      --  수정한일자
+  readcnt number default 0,         --  조회수
+  PRIMARY KEY  (idx)
+);
+create sequence sam_notice_seq_idx;
+
+
+
+
+CREATE TABLE sam_board (
+  idx number NOT NULL ,            --  고유번호, 자동증가
+  pass varchar2(20) NOT NULL ,         --  비밀번호
+  name varchar2(20) NOT NULL ,         --  작성자 이름
+  email varchar2(50) ,            --  작성자 이메일
+  regdate date default sysdate,         --  작성일자
+  updatedate date default sysdate,      --  수정한일자
+  subject varchar2(100) NOT NULL,      --  제목
+  contents varchar2(2000) NOT NULL,      --  내용
+  readcnt number default 0,         --  조회수
+  PRIMARY KEY  (idx)
+);
+create sequence sam_board_seq_idx;
+
+
+
+
+CREATE TABLE sam_pds (
+  idx number NOT NULL ,               --  고유번호
+  name varchar2(20) NOT NULL ,         --  작성자 이름
+  pass varchar2(20) NOT NULL ,         --  비밀번호
+  email varchar2(100) ,            --  이메일
+  subject varchar2(100) NOT NULL,      --  제목
+  contents varchar2(2000) NOT NULL,      --  내용
+  regdate date default sysdate ,      --  작성일자
+  updatedate date default sysdate ,      --  작성일자
+  readcnt number(2) default 0,         --  조회수
+  filename varchar2(255) null,         --  파일이름
+  PRIMARY KEY  (idx)
+);
+create sequence sam_pds_seq_idx;
